@@ -73,7 +73,16 @@ public class slotMachine extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/EEEEEE.gif"))); // NOI18N
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/spin.png"))); // NOI18N
         jButton1.setContentAreaFilled(false);
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton1MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jButton1MouseReleased(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -239,7 +248,7 @@ public class slotMachine extends javax.swing.JFrame {
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -301,6 +310,7 @@ public class slotMachine extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/ERR.png")));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/ERR.png")));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/ERR.png")));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/spin2.png")));
     }
     // </editor-fold>
     
@@ -556,6 +566,14 @@ public class slotMachine extends javax.swing.JFrame {
     private void jButton4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseReleased
         if(!cannotNudge&&canSpin)jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/nudge.png")));
     }//GEN-LAST:event_jButton4MouseReleased
+
+    private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/spin2.png")));
+    }//GEN-LAST:event_jButton1MousePressed
+
+    private void jButton1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseReleased
+        if(canSpin)jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/spin.png")));
+    }//GEN-LAST:event_jButton1MouseReleased
 //</editor-fold>
     //HI
     /**
