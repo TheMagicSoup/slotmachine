@@ -20,7 +20,7 @@ public class slotMachine extends javax.swing.JFrame {
     Fruit reel2;
     Fruit reel3;
     static ArrayList<Integer> reelnumbs = new ArrayList<>();
-    boolean wasNudged = false;
+    boolean cannotNudge = false;
     Fruit[][] slots;
     int recwin;
     boolean canSpin=false;
@@ -73,7 +73,7 @@ public class slotMachine extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/EEEEEE.gif"))); // NOI18N
 
-        jButton1.setText("Spin");
+        jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -157,7 +157,6 @@ public class slotMachine extends javax.swing.JFrame {
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(136, 136, 136)
@@ -169,7 +168,8 @@ public class slotMachine extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jSpinner1))))))
+                                        .addComponent(jSpinner1))))
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -214,16 +214,15 @@ public class slotMachine extends javax.swing.JFrame {
                             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                             .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)))
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(7, 7, 7)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -236,15 +235,11 @@ public class slotMachine extends javax.swing.JFrame {
                             .addComponent(jSpinner1, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)))
-                .addComponent(jButton1)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -277,7 +272,7 @@ public class slotMachine extends javax.swing.JFrame {
     }
 
     private void setFailGraphics() {
-        jLabel8.setText("FAIL");
+        jLabel8.setText("You're BROKE!");
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/ERR.png")));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/ERR.png")));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/ERR.png")));
@@ -295,16 +290,24 @@ public class slotMachine extends javax.swing.JFrame {
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/nudge2.png")));
         jLabel8.setText("You can't nudge again until you spin!");
     }
-    
+
     private void resetNudgeGraphics(){
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/nudge2.png")));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/nudge2.png")));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/nudge2.png")));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/nudge.png")));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/nudge.png")));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/nudge.png"))); 
+    }
+    
+    private void setErrGraphics(){
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/ERR.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/ERR.png")));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/ERR.png")));
     }
     // </editor-fold>
     
     private void spinSlots() {
-        wasNudged = false;
+        cannotNudge = false;
+        resetNudgeGraphics();
+        jLabel8.setText("");
         if (reel1.getID() == reel2.getID() && reel2.getID() == reel3.getID()) {
             switch (reel1.getID()) {
                 case 0:
@@ -386,6 +389,10 @@ public class slotMachine extends javax.swing.JFrame {
             jLabel8.setText("You can't bet nothing!");
         } else {
             bet = x;
+            canSpin=true;
+            System.out.println("CANSPIN = "+canSpin);
+            System.out.println("BET = "+bet);
+            System.out.println("X = "+x);
             try {
                 TimeUnit.MILLISECONDS.sleep(20);
             } catch (InterruptedException e) {
@@ -396,6 +403,9 @@ public class slotMachine extends javax.swing.JFrame {
     }
     
     private void nudge(Fruit[] slotsToMove) {
+        if(cannotNudge||!canSpin){
+            setNudgeFailGraphics();
+        }else{
             bank = Math.abs(recwin - bank) - 10;
             jLabel6.setText("£" + bank);
             System.out.println("[" + slotsToMove[0].getName() + ", " + slotsToMove[1].getName() + ", " + slotsToMove[2].getName() + "]");
@@ -404,16 +414,13 @@ public class slotMachine extends javax.swing.JFrame {
             slotsToMove[0].spinner(reelnumbs);
             setSlotGraphics();
             spinSlots();
-            wasNudged=true;
+            cannotNudge=true;
+        }
     }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (bet < 0 || bet > bank) {
-            jLabel8.setText("You can't spin with an invalid bet!");
-            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/ERR.png")));
-            jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/ERR.png")));
-            jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/ERR.png")));
-        } else {
+        placeBet();
+        if(canSpin) {
             System.out.println("action triggered");
             slots[0][0] = new Fruit("", 0);
             slots[0][1] = new Fruit("", 0);
@@ -435,9 +442,9 @@ public class slotMachine extends javax.swing.JFrame {
             reel1 = slots[0][1];
             reel2 = slots[1][1];
             reel3 = slots[2][1];
-            placeBet();
             setSlotGraphics();
             spinSlots();
+            //<editor-fold defaultstate="collapsed" desc="deprecated slot machine code">
             /**
              * boolean flaggo = false; jLabel9.setIcon(new
              * javax.swing.ImageIcon(getClass().getResource("/slotto/"+slots1[0].getName()+".png")));
@@ -506,34 +513,32 @@ public class slotMachine extends javax.swing.JFrame {
              * reelnumbs.remove(0); } } } else { for(int i=1;i<7;i++){
              * reelnumbs.remove(i); } } } else reelnumbs.remove(6); } }
              */
+            //</editor-fold>
             // TODO add your handling code here:
+        } else {
+            setErrGraphics();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
+//<editor-fold desc="Code for nudge button actions">
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (wasNudged) {
-            setNudgeFailGraphics();
-        } else nudge(slots[0]);
+        nudge(slots[0]);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if (wasNudged) {
-            setNudgeFailGraphics();
-        } else nudge(slots[1]);
+        nudge(slots[1]);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if(wasNudged){
-            setNudgeFailGraphics();
-        } else nudge(slots[2]);
+        nudge(slots[2]);
     }//GEN-LAST:event_jButton4ActionPerformed
+//</editor-fold>
 //<editor-fold defaultstate="collapsed" desc="Code for button press/release graphics">
     private void jButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MousePressed
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/nudge2.png")));
     }//GEN-LAST:event_jButton2MousePressed
 
     private void jButton2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseReleased
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/nudge.png")));
+        if(!cannotNudge&&canSpin)jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/nudge.png")));
     }//GEN-LAST:event_jButton2MouseReleased
 
     private void jButton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MousePressed
@@ -541,7 +546,7 @@ public class slotMachine extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3MousePressed
 
     private void jButton3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseReleased
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/nudge.png")));
+        if(!cannotNudge&&canSpin)jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/nudge.png")));
     }//GEN-LAST:event_jButton3MouseReleased
 
     private void jButton4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MousePressed
@@ -549,7 +554,7 @@ public class slotMachine extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4MousePressed
 
     private void jButton4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseReleased
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/nudge.png")));
+        if(!cannotNudge&&canSpin)jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/nudge.png")));
     }//GEN-LAST:event_jButton4MouseReleased
 //</editor-fold>
     //HI
