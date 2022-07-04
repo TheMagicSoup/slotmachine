@@ -8,9 +8,9 @@ This is a slot machine, with different features that hopefully combine to form a
 - A bet-based system that returns based on what's inputted
 - A nudge button
 - More to come like:
-	-Hold button
-	-Graphics overhaul
-		-Animated slots
-		-Cleaner GUI
-	-Pay table?
+	- Hold button
+	- Graphics overhaul
+		- Animated slots
+		- Cleaner GUI
+	- Pay table?
 ![GOHAN](https://pbs.twimg.com/media/FUUbH4tVsAAMUlf?format=jpg&name=900x900)
