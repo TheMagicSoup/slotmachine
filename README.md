@@ -13,4 +13,5 @@ This is a slot machine, with different features that hopefully combine to form a
 		- Animated slots
 		- Cleaner GUI
 	- Pay table?
+	
 ![GOHAN](https://pbs.twimg.com/media/FUUbH4tVsAAMUlf?format=jpg&name=900x900)
