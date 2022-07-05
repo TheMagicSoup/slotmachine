@@ -1,0 +1,1 @@
+color of spin buttons & nudge buttons = [237,32,36]
