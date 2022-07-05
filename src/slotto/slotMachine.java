@@ -454,74 +454,13 @@ public class slotMachine extends javax.swing.JFrame {
             reel3 = slots[2][1];
             setSlotGraphics();
             spinSlots();
-            //<editor-fold defaultstate="collapsed" desc="deprecated slot machine code">
-            /**
-             * boolean flaggo = false; jLabel9.setIcon(new
-             * javax.swing.ImageIcon(getClass().getResource("/slotto/"+slots1[0].getName()+".png")));
-             * jLabel10.setIcon(new
-             * javax.swing.ImageIcon(getClass().getResource("/slotto/"+slots2[0].getName()+".png")));
-             * jLabel11.setIcon(new
-             * javax.swing.ImageIcon(getClass().getResource("/slotto/"+slots3[0].getName()+".png")));
-             * jLabel1.setIcon(new
-             * javax.swing.ImageIcon(getClass().getResource("/slotto/"+reel1.getName()+"spec.png")));
-             * jLabel2.setIcon(new
-             * javax.swing.ImageIcon(getClass().getResource("/slotto/"+reel2.getName()+"spec.png")));
-             * jLabel3.setIcon(new
-             * javax.swing.ImageIcon(getClass().getResource("/slotto/"+reel3.getName()+"spec.png")));
-             * jLabel12.setIcon(new
-             * javax.swing.ImageIcon(getClass().getResource("/slotto/"+slots1[2].getName()+".png")));
-             * jLabel13.setIcon(new
-             * javax.swing.ImageIcon(getClass().getResource("/slotto/"+slots2[2].getName()+".png")));
-             * jLabel14.setIcon(new
-             * javax.swing.ImageIcon(getClass().getResource("/slotto/"+slots3[2].getName()+".png")));
-             */
-
-            //Border between icon set comment & spin comment
-            /**
-             * if (reel1.getID() == reel2.getID() && reel2.getID() ==
-             * reel3.getID()) { switch (reel1.getID()) { case 0: bet *= 10; bank
-             * += bet; jLabel6.setText("£"+bank); break; case 1: bet *= 10; bank
-             * += bet; jLabel6.setText("£"+bank); break; case 2: bet *= 20; bank
-             * += bet; jLabel6.setText("£"+bank); break; case 3: bet *= 30; bank
-             * += bet; jLabel6.setText("£"+bank); break; case 4: bet *= 40; bank
-             * += bet; jLabel6.setText("£"+bank); break; case 5: bet *= 60; bank
-             * += bet; jLabel6.setText("£"+bank); break; case 6: bet *= 100;
-             * //bank += bet; for(int i=0;i<bet;i++){ bet+=i; }
-             * jLabel6.setText("£"+bank); break; } } else if (reel1.getID() == 0
-             * || reel2.getID() == 0 || reel3.getID() == 0) { if
-             * (((reel1.getID() == reel2.getID() || reel1.getID() ==
-             * reel3.getID()) && reel1.getID() == 0) || (reel2.getID() ==
-             * reel3.getID()) && reel2.getID() == 0) { bet *= 5; bank += bet;
-             * jLabel6.setText("£"+bank); } else { bet *= 2; bank += bet;
-             * jLabel6.setText("£"+bank); } } else { bank -= bet;
-             * System.out.println(bank); jLabel6.setText("£"+bank); }
-             * if(bank<=0){ jLabel8.setText("FAIL"); jLabel1.setIcon(new
-             * javax.swing.ImageIcon(getClass().getResource("/slotto/ERR.png")));
-             * jLabel2.setIcon(new
-             * javax.swing.ImageIcon(getClass().getResource("/slotto/ERR.png")));
-             * jLabel3.setIcon(new
-             * javax.swing.ImageIcon(getClass().getResource("/slotto/ERR.png")));
-             * jLabel9.setIcon(new
-             * javax.swing.ImageIcon(getClass().getResource("/slotto/ERR.png")));
-             * jLabel10.setIcon(new
-             * javax.swing.ImageIcon(getClass().getResource("/slotto/ERR.png")));
-             * jLabel11.setIcon(new
-             * javax.swing.ImageIcon(getClass().getResource("/slotto/ERR.png")));
-             * jLabel12.setIcon(new
-             * javax.swing.ImageIcon(getClass().getResource("/slotto/ERR.png")));
-             * jLabel13.setIcon(new
-             * javax.swing.ImageIcon(getClass().getResource("/slotto/ERR.png")));
-             * jLabel14.setIcon(new
-             * javax.swing.ImageIcon(getClass().getResource("/slotto/ERR.png")));
-             * }
-             */
-            //Border between spin comment and fruit pool manipul8ion
-            /**
-             * if(bank<=100){ if(bank<=200){ if(bank<=300){ if(bank<=400){
-             * if(bank<=500){ for(int i=0;i<6;i++){ reelnumbs.remove(i); } }
-             * else { int b=0; while(reelnumbs.contains(0)){
-             * reelnumbs.remove(0); } } } else { for(int i=1;i<7;i++){
-             * reelnumbs.remove(i); } } } else reelnumbs.remove(6); } }
+            //<editor-fold defaultstate="collapsed" desc="rng code">
+            /*
+             if(bank<=100){ if(bank<=200){ if(bank<=300){ if(bank<=400){
+             if(bank<=500){ for(int i=0;i<6;i++){ reelnumbs.remove(i); } }
+             else { int b=0; while(reelnumbs.contains(0)){
+             reelnumbs.remove(0); } } } else { for(int i=1;i<7;i++){
+             reelnumbs.remove(i); } } } else reelnumbs.remove(6); } }
              */
             //</editor-fold>
             // TODO add your handling code here:
@@ -543,6 +482,14 @@ public class slotMachine extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 //</editor-fold>
 //<editor-fold defaultstate="collapsed" desc="Code for button press/release graphics">
+    private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/spin2.png")));
+    }//GEN-LAST:event_jButton1MousePressed
+
+    private void jButton1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseReleased
+        if(canSpin)jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/spin.png")));
+    }//GEN-LAST:event_jButton1MouseReleased
+    
     private void jButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MousePressed
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/nudge2.png")));
     }//GEN-LAST:event_jButton2MousePressed
@@ -566,14 +513,6 @@ public class slotMachine extends javax.swing.JFrame {
     private void jButton4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseReleased
         if(!cannotNudge&&canSpin)jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/nudge.png")));
     }//GEN-LAST:event_jButton4MouseReleased
-
-    private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/spin2.png")));
-    }//GEN-LAST:event_jButton1MousePressed
-
-    private void jButton1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseReleased
-        if(canSpin)jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/spin.png")));
-    }//GEN-LAST:event_jButton1MouseReleased
 //</editor-fold>
     //HI
     /**
