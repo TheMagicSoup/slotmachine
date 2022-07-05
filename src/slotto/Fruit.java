@@ -7,9 +7,9 @@ public class Fruit {
         name=n;
         id=i;
     }
-    public void spinner(ArrayList<Integer> x) {
+    public void spinner(ArrayList<Integer> randIDs) {
         Random ra = new Random();
-        id = x.get(ra.nextInt(x.size()));
+        id = randIDs.get(ra.nextInt(randIDs.size()));
         switch (id) {
             case 0:
                 name = "Cherry";
@@ -31,6 +31,9 @@ public class Fruit {
                 break;
             case 6:
                 name = "Orange";
+                break;
+            case 7:
+                name = "Skull";
                 break;
         }
     }

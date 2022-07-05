@@ -380,6 +380,12 @@ public class slotMachine extends javax.swing.JFrame {
                     }*/
                     jLabel6.setText("£" + bank);
                     break;
+                case 7:
+                    bank -= bet*5;
+                    recwin -= bet;
+                    System.out.println(bank);
+                    jLabel6.setText("£" + bank);
+                    break;
             }
         } else if (slot1.getID() == 0 || slot2.getID() == 0 || slot3.getID() == 0) {
             if (((slot1.getID() == slot2.getID() || slot1.getID() == slot3.getID()) && slot1.getID() == 0) || (slot2.getID() == slot3.getID()) && slot2.getID() == 0) {
@@ -393,11 +399,18 @@ public class slotMachine extends javax.swing.JFrame {
                 recwin = bet;
                 jLabel6.setText("£" + bank);
             }
+        } else if(slot1.getID()==7||slot2.getID()==7||slot3.getID()==7){
+            if (((slot1.getID() == slot2.getID() || slot1.getID() == slot3.getID()) && slot1.getID() == 7) || (slot2.getID() == slot3.getID()) && slot2.getID() == 7) {
+                bet*=2;
+                bank-=bet;
+                recwin-=bet;
+                jLabel6.setText("£"+bank);
+            }
         } else {
-            bank -= bet;
-            recwin -= bet;
-            System.out.println(bank);
-            jLabel6.setText("£" + bank);
+                bank -= bet;
+                recwin -= bet;
+                System.out.println(bank);
+                jLabel6.setText("£" + bank);
         }
         if (bank <= 0) {
             setFailGraphics();
@@ -562,7 +575,7 @@ public class slotMachine extends javax.swing.JFrame {
         }
         //</editor-fold>
         int x = 0;
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 8; i++) {
             reelnumbs.add(x);
             reelnumbs.add(x);
             reelnumbs.add(x);
