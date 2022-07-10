@@ -1,7 +1,7 @@
 # FINAL PROJECT GITHUB REPOSITORY
-SLOT MACHINE
+##SLOT MACHINE
 ![HACKERMAN](https://c.tenor.com/Pm4S40MGsIQAAAAC/hacker-hackerman.gif)
-Method for implementing new symbol:
+##Method for implementing new symbol:
 * Create subject.png & subjectspec.png
 * Create subject.png & subjectspec.png
 * Add subject.png to gamestart gif
