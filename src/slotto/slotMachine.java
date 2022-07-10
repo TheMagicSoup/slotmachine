@@ -13,7 +13,11 @@ import java.util.concurrent.TimeUnit;
  * @author zguledp16
  */
 public class slotMachine extends javax.swing.JFrame {
-
+    /*
+    Creating vars for bank, bet, middle row first column slot, middle row second column slot, middle row third column slot
+    reel symbol pool for rng, flag enabling/disabling nudging, 2D array as table for generated symbols, most recent winnings,
+    flag enabling/disabling spinning
+    */
     int bank = 4000;
     int bet = 0;
     Fruit slot1;
@@ -28,6 +32,7 @@ public class slotMachine extends javax.swing.JFrame {
      * Creates new form slotMachine
      */
     public slotMachine() {
+        //initialises bank jLabel & reels[][]
         this.reels = new Fruit[3][3];
         initComponents();
         jLabel6.setText("£" + bank);
@@ -68,13 +73,13 @@ public class slotMachine extends javax.swing.JFrame {
 
         jPanel1.setRequestFocusEnabled(false);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/EEEEEE.gif"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/default.gif"))); // NOI18N
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/EEEEEE.gif"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/default.gif"))); // NOI18N
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/EEEEEE.gif"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/default.gif"))); // NOI18N
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/spin.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/spin.png"))); // NOI18N
         jButton1.setContentAreaFilled(false);
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -104,7 +109,19 @@ public class slotMachine extends javax.swing.JFrame {
 
         jLabel8.setText("Enter a bet to get started.");
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/nudge.png"))); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/default.gif"))); // NOI18N
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/default.gif"))); // NOI18N
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/default.gif"))); // NOI18N
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/default.gif"))); // NOI18N
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/default.gif"))); // NOI18N
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/default.gif"))); // NOI18N
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/nudge.png"))); // NOI18N
         jButton2.setContentAreaFilled(false);
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -120,7 +137,7 @@ public class slotMachine extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/nudge.png"))); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/nudge.png"))); // NOI18N
         jButton3.setContentAreaFilled(false);
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -136,7 +153,7 @@ public class slotMachine extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/nudge.png"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/nudge.png"))); // NOI18N
         jButton4.setContentAreaFilled(false);
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -230,7 +247,7 @@ public class slotMachine extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -241,7 +258,7 @@ public class slotMachine extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)))
+                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -283,147 +300,174 @@ public class slotMachine extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     // <editor-fold desc="Graphics setting code">   
     private void setSlotGraphics() {
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/" + reels[0][0].getName() + ".png")));
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/" + reels[1][0].getName() + ".png")));
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/" + reels[2][0].getName() + ".png")));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/" + slot1.getName() + "spec.png")));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/" + slot2.getName() + "spec.png")));
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/" + slot3.getName() + "spec.png")));
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/" + reels[0][2].getName() + ".png")));
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/" + reels[1][2].getName() + ".png")));
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/" + reels[2][2].getName() + ".png")));
+        //Setting correct picture for each symbol
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/" + reels[0][0].getName() + ".png")));
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/" + reels[1][0].getName() + ".png")));
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/" + reels[2][0].getName() + ".png")));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/" + slot1.getName() + "spec.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/" + slot2.getName() + "spec.png")));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/" + slot3.getName() + "spec.png")));
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/" + reels[0][2].getName() + ".png")));
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/" + reels[1][2].getName() + ".png")));
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/" + reels[2][2].getName() + ".png")));
     }
 
     private void setFailGraphics() {
+        //Sets error graphic for each symbol & outputs failure message
         jLabel8.setText("You're BROKE!");
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/ERR.png")));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/ERR.png")));
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/ERR.png")));
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/ERR.png")));
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/ERR.png")));
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/ERR.png")));
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/ERR.png")));
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/ERR.png")));
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/ERR.png")));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/ERR.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/ERR.png")));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/ERR.png")));
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/ERR.png")));
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/ERR.png")));
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/ERR.png")));
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/ERR.png")));
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/ERR.png")));
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/ERR.png")));
     }
     
     private void setNudgeFailGraphics() {
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/nudge2.png")));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/nudge2.png")));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/nudge2.png")));
+        //Sets failure graphic for middle row of symbols & outputs failure message
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/nudge2.png")));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/nudge2.png")));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/nudge2.png")));
         jLabel8.setText("You can't nudge again until you spin!");
     }
 
     private void resetNudgeGraphics(){
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/nudge.png")));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/nudge.png")));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/nudge.png"))); 
+        //Resets nudge graphics after they've been set to nudge2 due to trying to nudge while cannotNudge is flagged
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/nudge.png")));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/nudge.png")));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/nudge.png"))); 
     }
     
     private void setErrGraphics(){
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/ERR.png")));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/ERR.png")));
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/ERR.png")));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/spin2.png")));
+        //Sets error graphics for middle row of symbols & sets spin button graphic to spin2
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/ERR.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/ERR.png")));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/ERR.png")));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/spin2.png")));
     }
     // </editor-fold>
     
-    private void spinSlots() {
+    private void checkSlots() {
+        //Resets nudge flag
         cannotNudge = false;
         resetNudgeGraphics();
         jLabel8.setText("");
+        //Triggered when all 3 slots are the same
         if (slot1.getID() == slot2.getID() && slot2.getID() == slot3.getID()) {
             switch (slot1.getID()) {
                 case 0:
-                    bet *= 10;
-                    bank += bet;
+                    //If all slots are cherries, multiply wager by 10 & add as winnings
+                    bank+=bet*10;
                     recwin = bet;
                     jLabel6.setText("£" + bank);
                     break;
                 case 1:
-                    bet *= 10;
-                    bank += bet;
+                    //If all slots are bells, multiply wager by 10 & add as winnings
+                    bank+=bet*10;
                     recwin = bet;
                     jLabel6.setText("£" + bank);
                     break;
                 case 2:
-                    bet *= 20;
-                    bank += bet;
+                    //If all slots are BARs, multiply wager by 20 & add as winnings
+                    bank+=bet*20;
                     recwin = bet;
                     jLabel6.setText("£" + bank);
                     break;
                 case 3:
-                    bet *= 30;
-                    bank += bet;
+                    //If all slots are sevens, multiply wager by 30 & add as winnings
+                    bank+=bet*30;
                     recwin = bet;
                     jLabel6.setText("£" + bank);
                     break;
                 case 4:
-                    bet *= 40;
-                    bank += bet;
+                    //If all slots are lemons, multiply wager by 40 & add as winnings
+                    bank+=bet*40;
                     recwin = bet;
                     jLabel6.setText("£" + bank);
                     break;
                 case 5:
-                    bet *= 60;
-                    bank += bet;
+                    //If all slots are grapes , multiply wager by 60 & add as winnings
+                    bank+=bet*60;
                     recwin = bet;
                     jLabel6.setText("£" + bank);
                     break;
                 case 6:
-                    bet *= 100;
-                    bank += bet;
+                    //If all slots are oranges, multiply wager by 100 & add as winnings
+                    bank+=bet*100;
                     recwin = bet;
-                    /*
-                    for(int i=0;i<bet;i++){
-                        bet+=i;
-                    }*/
                     jLabel6.setText("£" + bank);
                     break;
                 case 7:
-                    bank -= bet*5;
+                    //If all slots are skulls, multiply wager by 10 & deduct
+                    bank -= bet*10;
                     recwin -= bet;
                     System.out.println(bank);
                     jLabel6.setText("£" + bank);
                     break;
+                case 8:
+                    //If all slots are Dragon Balls, multiply wager by 10 & add to winnings
+                    bank+=bet*400;
+                    jLabel6.setText("£"+bank);
+                    break;
             }
+        //Otherwise, if 1 of the slots are cherries...
         } else if (slot1.getID() == 0 || slot2.getID() == 0 || slot3.getID() == 0) {
+            //If 2 of the slots are cherries, multiply wager by 5 & add to winnings
             if (((slot1.getID() == slot2.getID() || slot1.getID() == slot3.getID()) && slot1.getID() == 0) || (slot2.getID() == slot3.getID()) && slot2.getID() == 0) {
-                bet *= 5;
-                bank += bet;
+                bank +=bet*5;
                 recwin = bet;
                 jLabel6.setText("£" + bank);
+            //Otherwise, multiply wager by 2 & add to winnings
             } else {
-                bet *= 2;
-                bank += bet;
+                bank += bet*2;
                 recwin = bet;
                 jLabel6.setText("£" + bank);
             }
-        } else if(slot1.getID()==7||slot2.getID()==7||slot3.getID()==7){
+        //Otherwise, if 1 of the slots are skulls...
+        } else if (slot1.getID() == 7 || slot2.getID() == 7 || slot3.getID() == 7) {
+            ///If 2 of the slots are skulls, multiply wager by 5 & deduct
             if (((slot1.getID() == slot2.getID() || slot1.getID() == slot3.getID()) && slot1.getID() == 7) || (slot2.getID() == slot3.getID()) && slot2.getID() == 7) {
-                bet*=2;
-                bank-=bet;
-                recwin-=bet;
-                jLabel6.setText("£"+bank);
-            }
-        } else {
-                bank -= bet;
+                bank -= bet*5;
+                recwin -= bet;
+                jLabel6.setText("£" + bank);
+            //Otherwise, multiply wager by 2 & deduct
+            } else {
+                bank -= bet*2;
                 recwin -= bet;
                 System.out.println(bank);
                 jLabel6.setText("£" + bank);
+            }
+        } else {
+            //If none of the symbols match and they aren't skulls or cherries, deduct wager from bank
+            System.out.println("E");
+            bank-=bet;
+            recwin-=bet;
+            System.out.println(bank);
+            jLabel6.setText("£"+bank);
         }
+        //If bank becomes empty, output fail graphics
         if (bank <= 0) {
             setFailGraphics();
         }
+        
     }
-
+    //Procedure for placing bets
     private void placeBet() {
+        //Trace message for whenever placeBet() is executed
         System.out.println("placeBet() went through");
+        //Storing inputted bet in a variable separate from x for validations
         int x = (Integer) jSpinner1.getValue();
+        //Bet is rejected if it exceeds what's in the bank
         if (x > bank) {
             jLabel8.setText("You can't bet more than you have!");
+        //Bet is rejected if it's less than/equal to 0
         } else if (x <= 0) {
             jLabel8.setText("You can't bet nothing!");
+        //If bet is valid, x is stored into bet & canSpin is set to true
+        //Trace statements are output
         } else {
             bet = x;
             canSpin=true;
@@ -441,55 +485,86 @@ public class slotMachine extends javax.swing.JFrame {
     }
     
     private void nudge(Fruit[] slotsToMove) {
+        //If the nudge flag or the canSpin flags aren't in the right state, nudging isn't possible
         if(cannotNudge||!canSpin){
             setNudgeFailGraphics();
         }else{
+            //Bank is reset to before the spin
             bank = Math.abs(recwin - bank) - 10;
             jLabel6.setText("£" + bank);
+            //Trace statement, outputs what values are in each slot in the column
+            // to check for difference between the stored symbols and the outputted graphics
             System.out.println("[" + slotsToMove[0].getName() + ", " + slotsToMove[1].getName() + ", " + slotsToMove[2].getName() + "]");
+            //Replacing bottom slot with middle slot
             slotsToMove[2].replace(slotsToMove[1]);
+            //Replacing middle slot with top slot
             slotsToMove[1].replace(slotsToMove[0]);
+            //Creating new top slot
             slotsToMove[0].spinner(reelnumbs);
+            //This was done in lieu of directly manipulating the array as it didn't work
+            //Setting graphics for the symbols again
             setSlotGraphics();
-            spinSlots();
+            //Recalculating the winnings based on the new set of slots
+            checkSlots();
+            //Sets nudge flag to trues
             cannotNudge=true;
         }
     }
     
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        placeBet();
-        if(canSpin) {
-            System.out.println("action triggered");
-            reels[0][0] = new Fruit("", 0);
-            reels[0][1] = new Fruit("", 0);
-            reels[0][2] = new Fruit("", 0);
-
-            reels[1][0] = new Fruit("", 0);
-            reels[1][1] = new Fruit("", 0);
-            reels[1][2] = new Fruit("", 0);
-
-            reels[2][0] = new Fruit("", 0);
-            reels[2][1] = new Fruit("", 0);
-            reels[2][2] = new Fruit("", 0);
-
-            for (int i = 0; i < 3; i++) {
-                reels[0][i].spinner(reelnumbs);
-                reels[1][i].spinner(reelnumbs);
-                reels[2][i].spinner(reelnumbs);
+    private void spinSlots(){
+        //For each symbol, refresh the object & regenerate ID and name
+        for(int i=0;i<3;i++){
+            for(int j=0;j<3;j++){
+                reels[i][j]=new Fruit("",0);
+                reels[i][j].spinner(reelnumbs);
             }
+        }
+    }
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //Perform placeBet(), validate bet & store it
+        placeBet();
+        //If spin flag is true, perform rest of method
+        if(canSpin) {
+            //Trace statement for if this action successfully goes through
+            System.out.println("action triggered");
+            //Performs spinSlots()
+            spinSlots();
+            //Stores middle slot in each column in their own vars for comparing in checkSlots()
             slot1 = reels[0][1];
             slot2 = reels[1][1];
             slot3 = reels[2][1];
+            //Sets slot graphics
             setSlotGraphics();
-            spinSlots();
+            //Checks slots
+            checkSlots();
             //<editor-fold defaultstate="collapsed" desc="rng code">
             /*
-             if(bank<=100){ if(bank<=200){ if(bank<=300){ if(bank<=400){
-             if(bank<=500){ for(int i=0;i<6;i++){ reelnumbs.remove(i); } }
-             else { int b=0; while(reelnumbs.contains(0)){
-             reelnumbs.remove(0); } } } else { for(int i=1;i<7;i++){
-             reelnumbs.remove(i); } } } else reelnumbs.remove(6); } }
-             */
+            if(bank<=100) {
+                if (bank<=200) {
+                    if (bank<=300) {
+                        if (bank<=400) {
+                            if (bank<=500) {
+                                for(int i=0;i<6;i++) {
+                                    reelnumbs.remove(i);
+                                }
+                            }else{
+                                int b=0;
+                                while(reelnumbs.contains(0)){
+                                    reelnumbs.remove(0);
+                                }
+                            }
+                        }else{
+                            for(int i=1;i<7;i++) {
+                                reelnumbs.remove(i);
+                            }
+                        }
+                    }else{
+                        reelnumbs.remove(6);
+                    }
+                }
+            }
+            */
             //</editor-fold>
             // TODO add your handling code here:
         } else {
@@ -511,35 +586,35 @@ public class slotMachine extends javax.swing.JFrame {
 //</editor-fold>
 //<editor-fold defaultstate="collapsed" desc="Code for button press/release graphics">
     private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/spin2.png")));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/spin2.png")));
     }//GEN-LAST:event_jButton1MousePressed
 
     private void jButton1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseReleased
-        if(canSpin)jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/spin.png")));
+        if(canSpin)jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/spin.png")));
     }//GEN-LAST:event_jButton1MouseReleased
     
     private void jButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MousePressed
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/nudge2.png")));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/nudge2.png")));
     }//GEN-LAST:event_jButton2MousePressed
 
     private void jButton2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseReleased
-        if(!cannotNudge&&canSpin)jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/nudge.png")));
+        if(!cannotNudge&&canSpin)jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/nudge.png")));
     }//GEN-LAST:event_jButton2MouseReleased
 
     private void jButton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MousePressed
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/nudge2.png")));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/nudge2.png")));
     }//GEN-LAST:event_jButton3MousePressed
 
     private void jButton3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseReleased
-        if(!cannotNudge&&canSpin)jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/nudge.png")));
+        if(!cannotNudge&&canSpin)jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/nudge.png")));
     }//GEN-LAST:event_jButton3MouseReleased
 
     private void jButton4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MousePressed
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/nudge2.png")));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/nudge2.png")));
     }//GEN-LAST:event_jButton4MousePressed
 
     private void jButton4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseReleased
-        if(!cannotNudge&&canSpin)jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/nudge.png")));
+        if(!cannotNudge&&canSpin)jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/nudge.png")));
     }//GEN-LAST:event_jButton4MouseReleased
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -574,14 +649,12 @@ public class slotMachine extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(slotMachine.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        int x = 0;
         for (int i = 0; i < 8; i++) {
-            reelnumbs.add(x);
-            reelnumbs.add(x);
-            reelnumbs.add(x);
-            x++;
+            reelnumbs.add(i);
+            reelnumbs.add(i);
+            reelnumbs.add(i);
         }
-
+        reelnumbs.add(8);
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
