@@ -16,7 +16,7 @@
   * Extend condition of for loop in main() to be i<(previous amount of symbols)+1
 * Add to checkSlots()
   * Make case in checkSlots() for if the player has 3 of new symbol in middle
-  ```
+  ```java
   if(slot1.getID()==slot2.getID()&&slot2.getID()==slot3.getID()){
     switch(slot1.getID()){
     ...
@@ -28,7 +28,7 @@
   }
   ```
   * If necessary, make case outside of `if(slot1.getID()==slot2.getID()&&slot2.getID()==slot3.getID()` for if 1 or 2 of them are present
-  ```
+  ```java
   if(slot1.getID()==<GIVEN ID>||slot2.getID()==<GIVEN ID>||slot3.getID()==<GIVEN ID>){
     if(((slot1.getID()==slot2.getID()||slot1.getID()==slot3.getID())&&slot1.getID()==<GIVEN ID>)||((slot2.getID()==slot3.getID())&&slot2.getID()==<GIVEN ID>)){
       winningsCalc(<GIVEN MULTIPLIER>);
