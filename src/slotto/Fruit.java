@@ -41,6 +41,9 @@ public class Fruit {
                 name = "Skull";
                 break;
             case 8:
+                name = "Win";
+                break;
+            case 9:
                 name = "Ball";
                 break;
         }
