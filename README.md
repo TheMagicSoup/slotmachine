@@ -26,14 +26,11 @@
     }
     ...
   }
-  ```
-  * If necessary, make case outside of `if(slot1.getID()==slot2.getID()&&slot2.getID()==slot3.getID()` for if 1 or 2 of them are present
-  ```java
-  if(slot1.getID()==<GIVEN ID>||slot2.getID()==<GIVEN ID>||slot3.getID()==<GIVEN ID>){
-    if(((slot1.getID()==slot2.getID()||slot1.getID()==slot3.getID())&&slot1.getID()==<GIVEN ID>)||((slot2.getID()==slot3.getID())&&slot2.getID()==<GIVEN ID>)){
-      winningsCalc(<GIVEN MULTIPLIER>);
-    } else {
-      winningsCalc(<GIVEN MULTIPLIER>);
-    }
-  }
-  ```
+
+## Method for implementing new button
+* Standard/released image
+ * 100x100 resolution, 5px black border, [237,32,36] background
+ * Calibri, bold, 22px, anti-aliasing disabled, text centered
+* Pressed image
+ * 100x100 resolution, 5px black border, [141,19,21] background
+ * Calibri, bold, 22px, anti-alisaing disabled, text centered
