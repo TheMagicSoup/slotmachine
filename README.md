@@ -3,10 +3,10 @@
 ![HACKERMAN](https://c.tenor.com/Pm4S40MGsIQAAAAC/hacker-hackerman.gif)
 ## Method for implementing new symbol:
 * Create subject.png & subjectspec.png
-  * 100x100 dimensions, create subject.png
+  * 226x226 dimensions, create subject.png
   * Load subject.png, 5px border w/ RGB set to [237, 32, 36]
 * Add subject.png to gamestart gif
-  * Create file w/ dimensions set to (animtempl.pdn existing width)+100x100
+  * Create file w/ dimensions set to (animtempl.pdn existing width)+226x226
   * Add new colour to background, both layers from animtempl.pdn added to foreground
   * Add subject.png to end of animtempl.pdn
   * Put through paint.NET animation plugin
@@ -29,8 +29,8 @@
 
 ## Method for implementing new button
 * Standard/released image
- * 100x100 resolution, 5px black border, [237,32,36] background
- * Calibri, bold, 22px, anti-aliasing disabled, text centered
+  * 100x100 resolution, 5px black border, [237,32,36] background
+  * Calibri, bold, 22px, anti-aliasing disabled, text centered
 * Pressed image
- * 100x100 resolution, 5px black border, [141,19,21] background
- * Calibri, bold, 22px, anti-alisaing disabled, text centered
+  * 100x100 resolution, 5px black border, [141,19,21] background
+  * Calibri, bold, 22px, anti-alisaing disabled, text centered
