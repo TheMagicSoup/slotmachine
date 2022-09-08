@@ -1114,8 +1114,8 @@ public class slotMachine extends javax.swing.JFrame {
 
 //<editor-fold defaultstate="collapsed" desc="Code for bet buttons">
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-	    
-	}//GEN-LAST:event_jButton5ActionPerformed
+        jSpinner1.setValue(bank);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         betButtonAct(100);
