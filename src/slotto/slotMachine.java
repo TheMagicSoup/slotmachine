@@ -992,7 +992,8 @@ public class slotMachine extends javax.swing.JFrame {
             jLabel8.setText("You can't nudge until you spin!");
         }else{
             //Bank & bet are rolled back to before winningsCalc() was performed, £10 subtracted from bank
-            bank=Math.abs(recentWinnings-bank)-10;
+            bank=prevBank-10;
+			bet=prevBet;
             // to check for difference between the stored symbols and the outputted graphics
             System.out.println("[" + slotsToMove[0].getName() + ", " + slotsToMove[1].getName() + ", " + slotsToMove[2].getName() + "]");
             //Replacing bottom slot with middle slot
@@ -1114,8 +1115,8 @@ public class slotMachine extends javax.swing.JFrame {
 
 //<editor-fold defaultstate="collapsed" desc="Code for bet buttons">
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-	    
-	}//GEN-LAST:event_jButton5ActionPerformed
+        jSpinner1.setValue(bank);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         betButtonAct(100);
@@ -1200,7 +1201,7 @@ public class slotMachine extends javax.swing.JFrame {
 
     private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopButtonActionPerformed
         songClip.stop();
-        songClip.setFramePosition(0);
+        songClip.setMicrosecondPosition(0);
     }//GEN-LAST:event_stopButtonActionPerformed
 //</editor-fold>
     //HI
