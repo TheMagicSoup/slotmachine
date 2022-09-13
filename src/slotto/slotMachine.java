@@ -40,10 +40,8 @@ public class slotMachine extends javax.swing.JFrame {
     boolean soundCurrentlyPlaying=false;
     boolean songCurrentlyPlaying=false;
     
-    AudioInputStream soundStream;
-    Clip soundClip;
-    AudioInputStream songStream;
-    Clip songClip;
+    AudioInputStream soundStream, songStream;
+    Clip soundClip, songClip;
     CardLayout cardLayout;
     /**
      * Creates new form slotMachine
@@ -812,10 +810,8 @@ public class slotMachine extends javax.swing.JFrame {
         prevBank=bank;
         //Stores bet value pre-calculating in prevBet
         prevBet=bet;
-        
         //Multiplies bet value by multiplier
         bet *= multiplier;
-        recentWinnings=bet;
         //Adds winnings to bank, handles negative bet values with negative multiplier values
         bank += bet;
         //Stores results of calculatons in winnings value
@@ -1141,16 +1137,19 @@ public class slotMachine extends javax.swing.JFrame {
  
  //<editor-fold defaultstate="collapsed" desc="Code for hold buttons">
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+	//Arrays.asList(holdFlags).contains(true);
         if(holdFlags[0]||!canSpin)setHoldFailGraphics();
         else holdButtonAct(0);
     }//GEN-LAST:event_jButton10ActionPerformed
 	
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+	//Arrays.asList(holdFlags).contains(true);
         if(holdFlags[1]||!canSpin)setHoldFailGraphics();
         else holdButtonAct(1);
     }//GEN-LAST:event_jButton11ActionPerformed
 	
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+	//Arrays.asList(holdFlags).contains(true);
         if(holdFlags[2]||!canSpin)setHoldFailGraphics();
         else holdButtonAct(2);
     }//GEN-LAST:event_jButton13ActionPerformed
