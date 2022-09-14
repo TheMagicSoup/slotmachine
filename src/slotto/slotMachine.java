@@ -797,9 +797,13 @@ public class slotMachine extends javax.swing.JFrame {
         File songsFolder=new File("src\\slotto\\sounds\\music");
         FilenameFilter filter = (dir,name)-> name.endsWith(".wav");
         String[] songList=songsFolder.list(filter);
+	    /*
         for(int i=0;i<songList.length;i++){
             songList[i]=songList[i].substring(0,songList[i].indexOf("."));
-        }
+        }*/
+	for(String song:songList){
+	    song=song.substring(0,song.indexOf("."));
+	}
         songsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(songList));
     }
 //</editor-fold>
@@ -822,7 +826,9 @@ public class slotMachine extends javax.swing.JFrame {
 
     private void checkSlots() {
         //Resets hold flags & hold button graphics
-        for(int i=0;i<3;i++){holdFlags[i]=false;}
+        for(boolean flag:holdFlags){
+		flag=false;
+	}
         resetHoldGraphics();
         //Resets nudge flag
         cannotNudge = false;
@@ -830,8 +836,6 @@ public class slotMachine extends javax.swing.JFrame {
         resetNudgeGraphics();
         //Reset output box
         jLabel8.setText("");
-        //Reset integer for presence of cherry and/or skull
-        int checkInt = 0;
         //Triggered when all 3 slots are the same
         //<editor-fold defaultstate="collapsed" desc="ignoring this for now">
         if (slots[0].getID() == slots[1].getID() && slots[1].getID() == slots[2].getID()) {
@@ -869,10 +873,8 @@ public class slotMachine extends javax.swing.JFrame {
                     winningsCalc(-10);
                     break;
                 case 8:
-                    bank += 1000000;
-                    winnings += 1000000;
-                    jLabel6.setText("£" + bank);
-                    jLabel16.setText("£" + winnings);
+		    //If all slots are WIN symbols, multiply wager by 10,000
+                    winningsCalc(10000);
                     jackpotFlag=true;
                     canSpin = false;
                     cannotNudge = true;
@@ -887,8 +889,10 @@ public class slotMachine extends javax.swing.JFrame {
             }
         } else {
             //Booleans for checking if cherries & skulls are present respectively
-            boolean cherryPresent,skullPresent;
+            boolean cherryPresent,skullPresent,justSkullOrCherry;
 	    cherryPresent=skullPresent=false;
+        //Reset integer for presence of cherry and/or skull
+        int checkInt = 0;
             //For loop that checks for cherries & skulls
             for (int i = 0; i < 3; i++) {
                 //If current slot is cherry, set following calculations for cherry
@@ -905,7 +909,6 @@ public class slotMachine extends javax.swing.JFrame {
                 }
             }
 		//Set skull^cherry flag
-	    boolean justSkullOrCherry;
 	    justSkullOrCherry=cherryPresent^skullPresent;
             //Trace statements
             System.out.println(""+justSkullOrCherry);
