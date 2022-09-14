@@ -34,7 +34,6 @@ public class slotMachine extends javax.swing.JFrame {
     
     boolean cannotNudge = false;
     boolean canSpin=false;
-    boolean justSkullOrCherry=false;
     boolean[] holdFlags=new boolean[3];
     boolean jackpotFlag=false;
     boolean soundCurrentlyPlaying=false;
@@ -827,8 +826,6 @@ public class slotMachine extends javax.swing.JFrame {
         resetHoldGraphics();
         //Resets nudge flag
         cannotNudge = false;
-        //Reset skull^cherry flag
-        justSkullOrCherry=false;
         //Reset nudge graphics
         resetNudgeGraphics();
         //Reset output box
@@ -890,32 +887,33 @@ public class slotMachine extends javax.swing.JFrame {
             }
         } else {
             //Booleans for checking if cherries & skulls are present respectively
-            boolean a = false;
-            boolean b = false;
+            boolean cherryPresent,skullPresent;
+	    cherryPresent=skullPresent=false;
             //For loop that checks for cherries & skulls
             for (int i = 0; i < 3; i++) {
                 //If current slot is cherry, set following calculations for cherry
                 if (slots[i].getID() == 0) {
-                    a = true;
+                    cherryPresent = true;
                     System.out.println("CHERRDETECT");
                     checkInt = 0;
                 }
                 //If current slot is skull, set following calculations for skull
                 if (slots[i].getID() == 7) {
-                    b = true;
+                    skullPresent = true;
                     System.out.println("SKULL DETECT");
                     checkInt = 7;
                 }
             }
-            //Sets skull^cherry flag as true if a!=b
-            if (a ^ b)justSkullOrCherry = true;
+		//Set skull^cherry flag
+	    boolean justSkullOrCherry;
+	    justSkullOrCherry=cherryPresent^skullPresent;
             //Trace statements
             System.out.println(""+justSkullOrCherry);
             System.out.println(""+checkInt);
             //If only a skull or only a cherry is present, the following calculations can be performed
             if (justSkullOrCherry) {
-                //If 2 of the slots match, distribute winnings depending on what 
-                if (((slots[0].getID() == slots[1].getID() || slots[0].getID() == slots[2].getID()) && slots[0].getID() == checkInt) || ((slots[1].getID() == slots[2].getID()) && slots[1].getID() == checkInt)) {
+            //If 2 of the slots match, distribute winnings depending on what 
+            if (((slots[0].getID() == slots[1].getID() || slots[0].getID() == slots[2].getID()) && slots[0].getID() == checkInt) || ((slots[1].getID() == slots[2].getID()) && slots[1].getID() == checkInt)) {
                     switch (checkInt) {
                         case 0:
                             //If 2 slots are cherries, multiply wager by 5 and add to winnings
