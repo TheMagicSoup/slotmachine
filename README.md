@@ -4,16 +4,14 @@
 ## Method for implementing new symbol:
 * Create subject.png & subjectspec.png
   * 226x226 dimensions, create subject.png
-  * Load subject.png, 5px border w/ RGB set to [237, 32, 36]
+  * subjectspec.png will use premade background & border
 * Add subject.png to gamestart gif
-  * Create file w/ dimensions set to (animtempl.pdn existing width)+226x226
-  * Add new colour to background, both layers from animtempl.pdn added to foreground
-  * Add subject.png to end of animtempl.pdn
-  * Put through paint.NET animation plugin
+  * Edit template PDN file to accomodate subject
+  * Add subject.png & use animation plugin to generate gif
 * Add to Fruit.java
   * Add case for new symbol in spinner()
-* Add to arraylist initialisation in main
-  * Extend condition of for loop in main() to be i<(previous amount of symbols)+1
+* Add to arraylist initialisation in initRNG
+  * Extend condition of for loop in initRNG() to be i<total number of symbols
 * Add to checkSlots()
   * Make case in checkSlots() for if the player has 3 of new symbol in middle
   ```java
@@ -29,8 +27,5 @@
 
 ## Method for implementing new button
 * Standard/released image
-  * 100x100 resolution, 5px black border, [237,32,36] background
+  * 100x100 resolution, 5px black border, transparent background
   * Calibri, bold, 22px, anti-aliasing disabled, text centered
-* Pressed image
-  * 100x100 resolution, 5px black border, [141,19,21] background
-  * Calibri, bold, 22px, anti-alisaing disabled, text centered
