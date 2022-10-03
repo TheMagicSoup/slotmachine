@@ -15,7 +15,7 @@ import java.io.FilenameFilter;
  *
  * @author zguledp16
  */
-public class slotMachine extends javax.swing.JFrame {
+public final class slotMachine extends javax.swing.JFrame {
     /*
      * Creating vars for bank, bet, middle row first column slot, middle row second
      * column slot, middle row third column slot
@@ -68,7 +68,7 @@ public class slotMachine extends javax.swing.JFrame {
      */
     // @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         splitPane = new javax.swing.JSplitPane();
@@ -311,7 +311,7 @@ public class slotMachine extends javax.swing.JFrame {
         betLabel.setText("Bet: £");
 
         betSpinner.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        betSpinner.setModel(new javax.swing.SpinnerNumberModel());
+        betSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, bank, 1));
         betSpinner.setToolTipText("");
 
         balanceTitle.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -354,15 +354,15 @@ public class slotMachine extends javax.swing.JFrame {
                                 .addComponent(betFifty, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(betThousand, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(spinButton, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(outputBox, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(betPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGroup(betPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(betPanelLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
                         .addComponent(betLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(betSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(betSpinner)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, betPanelLayout.createSequentialGroup()
                         .addComponent(jackpotTestButton)
@@ -462,7 +462,7 @@ public class slotMachine extends javax.swing.JFrame {
                         .addGap(0, 0, 0)
                         .addComponent(hold3, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, slotsPanelLayout.createSequentialGroup()
-                        .addGap(87, 87, 87)
+                        .addGap(84, 84, 84)
                         .addComponent(slotImgPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 822, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(73, 73, 73))
             .addComponent(betPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -670,7 +670,7 @@ public class slotMachine extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>//GEN-END:initComponents
 
     // <editor-fold defaultstate="collapsed" desc="Graphics setting code">
     private void setSlotGraphics() {
@@ -786,9 +786,37 @@ public class slotMachine extends javax.swing.JFrame {
         reelnumbs.add(9);
     }
     
-    public void raiseChances(){}
+    public void raiseChances(){
+        /*
+             * if(bank<=100) {
+             * if (bank<=200) {
+             * if (bank<=300) {
+             * if (bank<=400) {
+             * if (bank<=500) {
+             * for(int i=0;i<6;i++) {
+             * reelnumbs.remove(i);
+             * }
+             * }else{
+             * int b=0;
+             * while(reelnumbs.contains(0)){
+             * reelnumbs.remove(0);
+             * }
+             * }
+             * }else{
+             * for(int i=1;i<7;i++) {
+             * reelnumbs.remove(i);
+             * }
+             * }
+             * }else{
+             * reelnumbs.remove(6);
+             * }
+             * }
+             * }
+         */
+    }
     
-    public void tankChances(){}
+    public void tankChances(){
+    }
     
     // <editor-fold defaultstate="collapsed" desc="Sound effects code">
     public void initClips() {
@@ -842,8 +870,8 @@ public class slotMachine extends javax.swing.JFrame {
          * songList[i]=songList[i].substring(0,songList[i].indexOf("."));
          * }
          */
-        for (String song : songList) {
-            song = song.substring(0, song.indexOf("."));
+        for (int i=0;i<songList.length;i++) {
+            songList[i] = songList[i].substring(0, songList[i].indexOf("."));
         }
         songsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(songList));
     }
@@ -1062,7 +1090,7 @@ public class slotMachine extends javax.swing.JFrame {
         }
     }
 
-    // Procedure handling re-initialising slots each spin
+    // Procedure handling regenerating slots each spin
     private void spinSlots() {
         // For each symbol, reset the object's contents & regenerate ID and name
         for (int i = 0; i < 3; i++) {
@@ -1075,8 +1103,7 @@ public class slotMachine extends javax.swing.JFrame {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="Procedures for bet and hold
-    // buttons">
+    // <editor-fold defaultstate="collapsed" desc="Procedures for bet and hold buttons">
     // Procedure handling placing bets
     private void betButtonAct(int val) {
         int x;
@@ -1097,7 +1124,7 @@ public class slotMachine extends javax.swing.JFrame {
     }
     // </editor-fold>
 
-    private void spinButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_spinButtonActionPerformed
+    private void spinButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spinButtonActionPerformed
         // Perform placeBet(), validate bet & store it
         placeBet();
         // If spin flag is true, perform rest of method
@@ -1115,152 +1142,123 @@ public class slotMachine extends javax.swing.JFrame {
             setSlotGraphics();
             // Checks slots
             checkSlots();
-            // <editor-fold defaultstate="collapsed" desc="rng code">
-            /*
-             * if(bank<=100) {
-             * if (bank<=200) {
-             * if (bank<=300) {
-             * if (bank<=400) {
-             * if (bank<=500) {
-             * for(int i=0;i<6;i++) {
-             * reelnumbs.remove(i);
-             * }
-             * }else{
-             * int b=0;
-             * while(reelnumbs.contains(0)){
-             * reelnumbs.remove(0);
-             * }
-             * }
-             * }else{
-             * for(int i=1;i<7;i++) {
-             * reelnumbs.remove(i);
-             * }
-             * }
-             * }else{
-             * reelnumbs.remove(6);
-             * }
-             * }
-             * }
-             */
-            // </editor-fold>
         } else {
             setErrGraphics();
         }
-    }// GEN-LAST:event_spinButtonActionPerformed
+    }//GEN-LAST:event_spinButtonActionPerformed
 
     // <editor-fold defaultstate="collapsed" desc="Code for nudge buttons">
-    private void nudge1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_nudge1ActionPerformed
+    private void nudge1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nudge1ActionPerformed
         nudge(reels[0]);
-    }// GEN-LAST:event_nudge1ActionPerformed
+    }//GEN-LAST:event_nudge1ActionPerformed
 
-    private void nudge2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_nudge2ActionPerformed
+    private void nudge2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nudge2ActionPerformed
         nudge(reels[1]);
-    }// GEN-LAST:event_nudge2ActionPerformed
+    }//GEN-LAST:event_nudge2ActionPerformed
 
-    private void nudge3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_nudge3ActionPerformed
+    private void nudge3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nudge3ActionPerformed
         nudge(reels[2]);
-    }// GEN-LAST:event_nudge3ActionPerformed
+    }//GEN-LAST:event_nudge3ActionPerformed
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Code for bet buttons">
-    private void betMaxActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_betMaxActionPerformed
+    private void betMaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_betMaxActionPerformed
         betSpinner.setValue(bank);
-    }// GEN-LAST:event_betMaxActionPerformed
+    }//GEN-LAST:event_betMaxActionPerformed
 
-    private void betHundredActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton6ActionPerformed
+    private void betHundredActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         betButtonAct(100);
-    }// GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void betFiftyActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_betFiftyActionPerformed
+    private void betFiftyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_betFiftyActionPerformed
         betButtonAct(50);
-    }// GEN-LAST:event_betFiftyActionPerformed
+    }//GEN-LAST:event_betFiftyActionPerformed
 
-    private void betThousandActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_betThousandActionPerformed
+    private void betThousandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_betThousandActionPerformed
         betButtonAct(1000);
-    }// GEN-LAST:event_betThousandActionPerformed
+    }//GEN-LAST:event_betThousandActionPerformed
 
-    private void clearEntryActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_clearEntryActionPerformed
-        playSound("betbuttonpress");
-        betSpinner.setValue(0);
-    }// GEN-LAST:event_clearEntryActionPerformed
+    private void clearEntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearEntryActionPerformed
+        betButtonAct(0);
+    }//GEN-LAST:event_clearEntryActionPerformed
 
-    private void betTenActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_betTenActionPerformed
+    private void betTenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_betTenActionPerformed
         betButtonAct(10);
-    }// GEN-LAST:event_betTenActionPerformed
+    }//GEN-LAST:event_betTenActionPerformed
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Code for hold buttons">
-    private void hold1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_hold1ActionPerformed
+    private void hold1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hold1ActionPerformed
         // Arrays.asList(holdFlags).contains(true);
         if (holdFlags[0] || !canSpin)
             setHoldFailGraphics();
         else
             holdButtonAct(0);
-    }// GEN-LAST:event_hold1ActionPerformed
+    }//GEN-LAST:event_hold1ActionPerformed
 
-    private void hold2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_hold2ActionPerformed
+    private void hold2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hold2ActionPerformed
         // Arrays.asList(holdFlags).contains(true);
         if (holdFlags[1] || !canSpin)
             setHoldFailGraphics();
         else
             holdButtonAct(1);
-    }// GEN-LAST:event_hold2ActionPerformed
+    }//GEN-LAST:event_hold2ActionPerformed
 
-    private void hold3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_hold3ActionPerformed
+    private void hold3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hold3ActionPerformed
         // Arrays.asList(holdFlags).contains(true);
         if (holdFlags[2] || !canSpin)
             setHoldFailGraphics();
         else
             holdButtonAct(2);
-    }// GEN-LAST:event_hold3ActionPerformed
+    }//GEN-LAST:event_hold3ActionPerformed
 
     // </editor-fold>
 
     // Button for auto-triggering jackpots, must omit once complete
-    private void jackpotTestButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jackpotTestButtonActionPerformed
+    private void jackpotTestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jackpotTestButtonActionPerformed
         reelnumbs.clear();
         reelnumbs.add(8);
-    }// GEN-LAST:event_jackpotTestButtonActionPerformed
+    }//GEN-LAST:event_jackpotTestButtonActionPerformed
 
     // <editor-fold defaultstate="collapsed" desc="Code for side panel buttons">
-    private void slotsPanelButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_slotsPanelButtonActionPerformed
+    private void slotsPanelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_slotsPanelButtonActionPerformed
         cardLayout.show(panelCards, "slotsCard");
-    }// GEN-LAST:event_slotsPanelButtonActionPerformed
+    }//GEN-LAST:event_slotsPanelButtonActionPerformed
 
-    private void payTablePanelButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_payTablePanelButtonActionPerformed
+    private void payTablePanelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payTablePanelButtonActionPerformed
         cardLayout.show(panelCards, "payTableCard");
-    }// GEN-LAST:event_payTablePanelButtonActionPerformed
+    }//GEN-LAST:event_payTablePanelButtonActionPerformed
 
-    private void musicPanelButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_musicPanelButtonActionPerformed
+    private void musicPanelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_musicPanelButtonActionPerformed
         cardLayout.show(panelCards, "musicCard");
-    }// GEN-LAST:event_musicPanelButtonActionPerformed
+    }//GEN-LAST:event_musicPanelButtonActionPerformed
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Code for music buttons">
-    private void songsComboBoxActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_songsComboBoxActionPerformed
+    private void songsComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_songsComboBoxActionPerformed
         System.out.println("PUNCHED IN:" + songsComboBox.getSelectedItem());
-    }// GEN-LAST:event_songsComboBoxActionPerformed
+    }//GEN-LAST:event_songsComboBoxActionPerformed
 
-    private void scanFolderButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_scanFolderButtonActionPerformed
+    private void scanFolderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scanFolderButtonActionPerformed
         checkFileList();
-    }// GEN-LAST:event_scanFolderButtonActionPerformed
+    }//GEN-LAST:event_scanFolderButtonActionPerformed
 
-    private void pauseButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_pauseButtonActionPerformed
+    private void pauseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pauseButtonActionPerformed
         songClip.stop();
-    }// GEN-LAST:event_pauseButtonActionPerformed
+    }//GEN-LAST:event_pauseButtonActionPerformed
 
-    private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_playButtonActionPerformed
+    private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
         songClip.start();
-    }// GEN-LAST:event_playButtonActionPerformed
+    }//GEN-LAST:event_playButtonActionPerformed
 
-    private void enterSongButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_enterSongButtonActionPerformed
+    private void enterSongButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterSongButtonActionPerformed
         playMusic("" + songsComboBox.getSelectedItem());
-    }// GEN-LAST:event_enterSongButtonActionPerformed
+    }//GEN-LAST:event_enterSongButtonActionPerformed
 
-    private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_stopButtonActionPerformed
+    private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopButtonActionPerformed
         songClip.stop();
         songClip.setMicrosecondPosition(0);
-    }// GEN-LAST:event_stopButtonActionPerformed
+    }//GEN-LAST:event_stopButtonActionPerformed
     // </editor-fold>
     // HI
 
@@ -1306,7 +1304,7 @@ public class slotMachine extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify                     
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel balanceLabel;
     private javax.swing.JLabel balanceTitle;
     private javax.swing.JButton betFifty;
@@ -1355,5 +1353,5 @@ public class slotMachine extends javax.swing.JFrame {
     private javax.swing.JLabel trueneutralslot;
     private javax.swing.JLabel winningsLabel;
     private javax.swing.JLabel winningsTitle;
-    // End of variables declaration                   
+    // End of variables declaration//GEN-END:variables
 }
