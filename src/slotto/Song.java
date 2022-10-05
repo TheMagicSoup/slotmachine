@@ -12,33 +12,52 @@ package slotto;
 import java.util.ArrayList;
 import java.io.FilenameFilter;
 import java.io.File;
+import java.io.IOException;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
-public class Song extends Sound {
-    Clip sClip=super.clip;
-    AudioInputStream sAis=super.ais;
-    boolean sCurrentlyPlaying;
+public class Song {
+    
+    Clip clip;
+    AudioInputStream ais;
+    boolean currentlyPlaying;
     public Song(){
         try{
             clip=AudioSystem.getClip();
-            sCurrentlyPlaying=false;
+            currentlyPlaying=false;
         } catch (Exception err) {
             err.printStackTrace();
         }
     }
     
+    public void playAudio(String fileName){
+        if(currentlyPlaying){
+            clip.close();
+            currentlyPlaying=false;
+        }
+        try{
+            ais=AudioSystem.getAudioInputStream(new File("src\\slotto\\sounds\\music\\"+fileName+".wav"));
+            clip.open(ais);
+            clip.start();
+            currentlyPlaying=true;
+        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e){
+            e.printStackTrace();
+        }
+    }
+    
     public void play(){
-        sClip.start();
+        clip.start();
     }
    
     public void pause(){
-        sClip.stop();
+        clip.stop();
     }
     
     public void stop(){
-        sClip.stop();
-        sClip.setMicrosecondPosition(0);
+        clip.stop();
+        clip.setMicrosecondPosition(0);
     }
 }

@@ -6,10 +6,9 @@
 package slotto;
 
 import java.io.File;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-
+import java.io.IOException;
+import java.util.Arrays;
+import javax.sound.sampled.*;
 public class Sound {
     
      AudioInputStream ais;
@@ -30,11 +29,11 @@ public class Sound {
             currentlyPlaying=false;
         }
         try{
-            ais=AudioSystem.getAudioInputStream(new File("src\\slotto\\sounds\\music\\"+fileName+".wav"));
+            ais=AudioSystem.getAudioInputStream(new File("src\\slotto\\sounds\\"+fileName+".wav"));
             clip.open(ais);
             clip.start();
             currentlyPlaying=true;
-        }catch (Exception err){
+        }catch (IOException | LineUnavailableException | UnsupportedAudioFileException err){
             err.printStackTrace();
         }
     }
