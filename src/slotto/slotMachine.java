@@ -15,41 +15,50 @@ import java.io.FilenameFilter;
  * @author zguledp16
  */
 public final class slotMachine extends javax.swing.JFrame {
-
-    /*
-     * Creating vars for bank, bet, middle row first column slot, middle row second
-     * column slot, middle row third column slot
-     * reel symbol pool for rng, flag enabling/disabling nudging, 2D array as table
-     * for generated symbols, most recent winnings,
-     * flag enabling/disabling spinning, checking if only a skull or cherry are
-     * present, flag for holding each row
-     */
+    /*Integers holding bank (set to a default value), 
+    * bet and winnings,
+    * and the bet & winnings from the previous spin
+    */
     int bank = 4000;
-    int bet, winnings = 0;
+    int bet, winnings, prevBank, prevBet; = 0;
+    //Array of Fruit objects controlling the middle row of slots
     Fruit[] slots;
+    //ArrayList acting as a dynamic "RNG pool" Fruit IDs are decided from
     static ArrayList<Integer> reelnumbs = new ArrayList<>();
-
+    //2D array of Fruit objects controlling the 9 slots in the slot machine
     Fruit[][] reels;
-    int prevBank, prevBet;
-
-    boolean cannotNudge, canSpin, jackpotFlag, soundCurrentlyPlaying, songCurrentlyPlaying = false;
+    /* Booleans acting as flags for checking & controlling:
+    * whether the player can nudge,
+    * whether the player can spin
+    * and whether a jackpot has been won,
+    * alongside an array of Booleans for holding flags controlling the "holding" of each reel
+    */
+    boolean cannotNudge, canSpin, jackpotFlag = false;
     boolean[] holdFlags = new boolean[3];
-
+    
+    //Sound object controlling sound effects
     Sound soundEffects = new Sound();
+    //Song object controlling background music
     Song songs = new Song();
+    //CardLayout controlling the graphical user interface's card layout
     CardLayout cardLayout;
 
     /**
      * Creates new form slotMachine
      */
     public slotMachine() {
-        // initialises bank jLabel, slots[] and reels[][]
+        // Initialises slots[] and reels[][]
         this.slots = new Fruit[3];
         this.reels = new Fruit[3][3];
+        // Initialises graphical user interface elements
         initComponents();
+        // Initialises balanceLabel
         balanceLabel.setText("£" + bank);
+        // Initialises card layout
         cardLayout = (CardLayout) (panelCards.getLayout());
+        //Initialises song list
         checkFileList();
+        //Initialises random number generation
         initRNG();
     }
 
@@ -687,8 +696,9 @@ public final class slotMachine extends javax.swing.JFrame {
     }
 
     private void setFailGraphics() {
-        // Sets error graphic for each symbol & outputs failure message
+        // Outputs fail message
         outputBox.setText("You're BROKE!");
+        // Sets fail graphic for each slot
         middleleftslot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/bankrupt.gif")));
         trueneutralslot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/bankrupt.gif")));
         middlerightslot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/bankrupt.gif")));
@@ -701,48 +711,50 @@ public final class slotMachine extends javax.swing.JFrame {
     }
 
     private void setNudgeFailGraphics() {
-        // Sets failure graphic for nudge buttons & outputs failure message
+        // Makes nudge buttons darker to indicate that they can't be used yet
         nudge1.setBackground(new java.awt.Color(158, 12, 0));
         nudge2.setBackground(new java.awt.Color(158, 12, 0));
         nudge3.setBackground(new java.awt.Color(158, 12, 0));
+        // Outputs message for failing to nudge
         outputBox.setText("You can't nudge again until you spin!");
     }
 
     private void setHoldFailGraphics() {
-        // Set failure graphic for hold buttons & outputs failure message
+        // Makes hold buttons darker to indicate that they can't be used yet
         hold1.setBackground(new java.awt.Color(158, 12, 0));
         hold2.setBackground(new java.awt.Color(158, 12, 0));
         hold3.setBackground(new java.awt.Color(158, 12, 0));
+        // Outputs message for failing to hold
         outputBox.setText("You can't hold another reel until you spin!");
     }
 
     private void resetNudgeGraphics() {
-        // Resets nudge graphics after they've been set to nudge2 due to trying to nudge
-        // while cannotNudge is flagged
+        // Resets nudge buttons to original colour to indicate that they can be used again
         nudge1.setBackground(new java.awt.Color(252, 118, 106));
         nudge2.setBackground(new java.awt.Color(252, 118, 106));
         nudge3.setBackground(new java.awt.Color(252, 118, 106));
     }
 
     private void resetHoldGraphics() {
+        // Resets hold buttons to original colour to indicate that they can be used again
         hold1.setBackground(new java.awt.Color(252, 118, 106));
         hold2.setBackground(new java.awt.Color(252, 118, 106));
         hold3.setBackground(new java.awt.Color(252, 118, 106));
     }
 
     private void setErrGraphics() {
-        // Sets error graphics for middle row of symbols & sets spin button graphic to
-        // spin2
+        // Sets error graphic to middle row of slots
         middleleftslot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/ERR.png")));
         trueneutralslot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/ERR.png")));
         middlerightslot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/ERR.png")));
+        // Makes spin button darker to indicate that it can't be used yet
         spinButton.setBackground(new java.awt.Color(141, 19, 21));
     }
 
     private void setWinGraphics() {
-        // Sets jackpot graphics for middle row of symbols, sets spin button to spin2,
-        // sets nudge buttons to nudge2
+        // Changes GUI background to gold
         spinButton.setBackground(new java.awt.Color(163, 16, 7));
+        // Sets each slot to jackpot graphic
         middleleftslot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/victory.gif")));
         trueneutralslot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/victory.gif")));
         middlerightslot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/victory.gif")));
@@ -752,28 +764,39 @@ public final class slotMachine extends javax.swing.JFrame {
         bottomleftslot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/victory.gif")));
         bottommiddleslot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/victory.gif")));
         bottomrightslot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/victory.gif")));
+        // Changes background colour of panel holding slots
         slotsPanel.setBackground(new java.awt.Color(255, 204, 102));
+        // Changes background colour of panel holding buttons
         betPanel.setBackground(new java.awt.Color(255, 204, 102));
+        // Plays jackpot audio
         soundEffects.playAudio("jackpotsong");
+        // Outputs victory message
         outputBox.setText("YOU ARE A WINNER! NOW GET OUT!");
     }
 
     // </editor-fold>
     //<editor-fold defaultstate="collapsed" desc="RNG manipulation code">
+    // Arraylist initialisation
     public void initRNG() {
-        // Arraylist initialisation
+        // For each potential ID
         for (int i = 0; i < 8; i++) {
+            // To implement each ID 10 times
             for (int j = 0; j < 10; j++) {
+                // If current ID is 0 (for cherry) or 7 (for skull)
                 if (i == 0 || i == 7) {
+                    // Puts half as many 0s and 7s in reelnumbs
                     if (j % 2 == 0) {
                         reelnumbs.add(i);
                     }
                 } else {
+                    //Adds current ID to reelnumbs
                     reelnumbs.add(i);
                 }
             }
         }
+        //Adds ID 8 once
         reelnumbs.add(8);
+        //Adds ID 9 once
         reelnumbs.add(9);
     }
 
@@ -807,6 +830,7 @@ public final class slotMachine extends javax.swing.JFrame {
     }
 
     public void tankChances(int id, int val) {
+        //TO-DO - limits chances of successful combination (3 simultaneous symbols, 1/2 cherries)
     }
 
     //</editor-fold>
@@ -855,17 +879,15 @@ public final class slotMachine extends javax.swing.JFrame {
     }*/
 
     public void checkFileList() {
+        //New array of song names, holds all files in src/slotto/sounds/music
         File songsFolder = new File("src\\slotto\\sounds\\music");
         FilenameFilter filter = (dir, name) -> name.endsWith(".wav");
         String[] songList = songsFolder.list(filter);
-        /*
-         * for(int i=0;i<songList.length;i++){
-         * songList[i]=songList[i].substring(0,songList[i].indexOf("."));
-         * }
-         */
         for (int i = 0; i < songList.length; i++) {
+            //Omits file extension of each file in respective String value
             songList[i] = songList[i].substring(0, songList[i].indexOf("."));
         }
+        //Sets list of Strings used in combo box as songList
         songsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(songList));
     }
 
@@ -1098,23 +1120,33 @@ public final class slotMachine extends javax.swing.JFrame {
     }
 
     // <editor-fold defaultstate="collapsed" desc="Procedures for bet and hold buttons">
+    
     // Procedure handling placing bets
     private void betButtonAct(int val) {
+        //Defining integer x
         int x;
+        //If adding input to value held in spinner puts it beyond bank value, make x=bank
         if ((val + (Integer) betSpinner.getValue()) > bank) {
             x = bank;
         } else {
+            //Otherwise, x=value held in spinner + input
             x = (Integer) betSpinner.getValue() + val;
         }
+        //Set spinner value as x
         betSpinner.setValue(x);
+        //Play sound effect
         soundEffects.playAudio("betbuttonpress");
     }
 
     // Procedure handling hold buttons
     private void holdButtonAct(int reel) {
+        //Remove 10 from the bank
         bank -= 10;
+        //Change balance label text to reflect this
         balanceLabel.setText("£" + bank);
+        //Set hold flag for inputted reel as true
         holdFlags[reel] = true;
+        //Play sound effect
         soundEffects.playAudio("holdbuttonpress");
     }
     // </editor-fold>
@@ -1138,74 +1170,87 @@ public final class slotMachine extends javax.swing.JFrame {
             // Checks slots
             checkSlots();
         } else {
+            // If player cannot spin, set error graphics
             setErrGraphics();
         }
     }
 
     // <editor-fold defaultstate="collapsed" desc="Code for nudge buttons">
     private void nudge1ActionPerformed(java.awt.event.ActionEvent evt) {
+        //Nudges bottom and middle slots in 1st reel downwards once, generates new symbol for top slot
         nudge(reels[0]);
     }
 
     private void nudge2ActionPerformed(java.awt.event.ActionEvent evt) {
+        //Nudges bottom and middle slots in 2nd reel downwards once, generates new symbol for top slot
         nudge(reels[1]);
     }
 
     private void nudge3ActionPerformed(java.awt.event.ActionEvent evt) {
+        //Nudges bottom and middle slots in 3rd reel downwards once, generates new symbol for top slot
         nudge(reels[2]);
     }
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Code for bet buttons">
     private void betMaxActionPerformed(java.awt.event.ActionEvent evt) {
-        betSpinner.setValue(bank);
+        //Sets held value in spinner as the same as bank
+        betButtonAct(bank);
     }
 
     private void betHundredActionPerformed(java.awt.event.ActionEvent evt) {
+        //Increases held value in spinner by 100
         betButtonAct(100);
     }
 
     private void betFiftyActionPerformed(java.awt.event.ActionEvent evt) {
+        //Increases held value in spinner by 50
         betButtonAct(50);
     }
 
     private void betThousandActionPerformed(java.awt.event.ActionEvent evt) {
+        //Increases held value in spinner by 1000
         betButtonAct(1000);
     }
 
     private void clearEntryActionPerformed(java.awt.event.ActionEvent evt) {
+        //Sets held value in spinner as 0
         betButtonAct(0);
     }
 
     private void betTenActionPerformed(java.awt.event.ActionEvent evt) {
+        //Increases held value in spinner by 10
         betButtonAct(10);
     }
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Code for hold buttons">
     private void hold1ActionPerformed(java.awt.event.ActionEvent evt) {
-        // Arrays.asList(holdFlags).contains(true);
+        // If hold flag for this reel is already true, or the player can't spin, output fail graphics
         if (holdFlags[0] || !canSpin) {
             setHoldFailGraphics();
         } else {
+            //Otherwise, perform holdButtonAct() on this reel's index
             holdButtonAct(0);
         }
     }
 
     private void hold2ActionPerformed(java.awt.event.ActionEvent evt) {
-        // Arrays.asList(holdFlags).contains(true);
+        // If hold flag for this reel is already true, or the player can't spin, output fail graphics
         if (holdFlags[1] || !canSpin) {
             setHoldFailGraphics();
         } else {
+            //Otherwise, perform holdButtonAct() on this reel's index
             holdButtonAct(1);
         }
     }
 
     private void hold3ActionPerformed(java.awt.event.ActionEvent evt) {
-        // Arrays.asList(holdFlags).contains(true);
+        // If hold flag for this reel is already true, or the player can't spin, output fail graphics
         if (holdFlags[2] || !canSpin) {
             setHoldFailGraphics();
         } else {
+            //Otherwise, perform holdButtonAct() on this reel's index
             holdButtonAct(2);
         }
     }
@@ -1213,46 +1258,56 @@ public final class slotMachine extends javax.swing.JFrame {
     // </editor-fold>
     // Button for auto-triggering jackpots, must omit once complete
     private void jackpotTestButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        //Wipes reelnumbs & makes 8 the only value, guaranteeing it's chosen for each slot
         reelnumbs.clear();
         reelnumbs.add(8);
     }
 
     // <editor-fold defaultstate="collapsed" desc="Code for side panel buttons">
     private void slotsPanelButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        //Shows slot machine jPanel
         cardLayout.show(panelCards, "slotsCard");
     }
 
     private void payTablePanelButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        //Shows pay table jPanel
         cardLayout.show(panelCards, "payTableCard");
     }
 
     private void musicPanelButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        //Shows music control jPanel
         cardLayout.show(panelCards, "musicCard");
     }
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Code for music buttons">
     private void songsComboBoxActionPerformed(java.awt.event.ActionEvent evt) {
+        //Trace statement indicating song has been selected in combo box
         System.out.println("PUNCHED IN:" + songsComboBox.getSelectedItem());
     }
 
     private void scanFolderButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        //Scans music folder to reflect new changes if they're made mid-session
         checkFileList();
     }
 
     private void pauseButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        //Pauses current song
         songs.pause();
     }
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        //Plays current song
         songs.play();
     }
 
     private void enterSongButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        //Plays song chosen via combo box
         songs.playAudio("" + songsComboBox.getSelectedItem());
     }
 
     private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        //Stops current song
         songs.stop();
     }
     // </editor-fold>
