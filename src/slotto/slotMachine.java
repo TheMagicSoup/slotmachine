@@ -1073,17 +1073,15 @@ public final class slotMachine extends javax.swing.JFrame {
 
     // Procedure handling nudge
     private void nudge(Fruit[] slotsToMove) {
-        // If the nudge flag or the canSpin flags aren't in the right state, nudging
-        // isn't possible
+        // If the nudge flag or the canSpin flags aren't in the right state, the player can't nudge
         if (cannotNudge || !canSpin) {
             setNudgeFailGraphics();
             outputBox.setText("You can't nudge until you spin!");
         } else {
-            // Bank & bet are rolled back to before winningsCalc() was performed, £10
-            // subtracted from bank
+            // Bank & bet are rolled back to before winningsCalc() was performed and £10 is subtracted from bank
             bank = prevBank - 10;
             bet = prevBet;
-            // to check for difference between the stored symbols and the outputted graphics
+            // Trace statement to check for difference between the stored symbols and the outputted graphics
             System.out.println("[" + slotsToMove[0].getName() + ", " + slotsToMove[1].getName() + ", "
                     + slotsToMove[2].getName() + "]");
             // Replacing bottom slot with middle slot
