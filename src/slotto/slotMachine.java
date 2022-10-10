@@ -20,7 +20,7 @@ public final class slotMachine extends javax.swing.JFrame {
     * and the bet & winnings from the previous spin
     */
     int bank = 4000;
-    int bet, winnings, prevBank, prevBet; = 0;
+    int bet, winnings, prevBet; = 0;
     //Array of Fruit objects controlling the middle row of slots
     Fruit[] slots;
     //ArrayList acting as a dynamic "RNG pool" Fruit IDs are decided from
@@ -895,8 +895,6 @@ public final class slotMachine extends javax.swing.JFrame {
     //<editor-fold defaultstate="collapsed" 
     // Procedure handling adding, storing & outputting winnings
     private void winningsCalc(int multiplier) {
-        // Stores bank value pre-calculating in prevBank
-        prevBank = bank;
         // Stores bet value pre-calculating in prevBet
         prevBet = bet;
         // Multiplies bet value by multiplier
@@ -1078,8 +1076,8 @@ public final class slotMachine extends javax.swing.JFrame {
             setNudgeFailGraphics();
             outputBox.setText("You can't nudge until you spin!");
         } else {
-            // Bank & bet are rolled back to before winningsCalc() was performed and £10 is subtracted from bank
-            bank = prevBank - 10;
+            // £10 omitted from bank, bet rolled back to pre-spin
+            bank -= 10;
             bet = prevBet;
             // Trace statement to check for difference between the stored symbols and the outputted graphics
             System.out.println("[" + slotsToMove[0].getName() + ", " + slotsToMove[1].getName() + ", "
