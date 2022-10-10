@@ -20,7 +20,7 @@ public final class slotMachine extends javax.swing.JFrame {
     * and the bet & winnings from the previous spin
     */
     int bank = 4000;
-    int bet, winnings, prevBet; = 0;
+    int bet, winnings, prevBet = 0;
     //Array of Fruit objects controlling the middle row of slots
     Fruit[] slots;
     //ArrayList acting as a dynamic "RNG pool" Fruit IDs are decided from
