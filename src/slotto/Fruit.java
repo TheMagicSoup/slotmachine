@@ -56,7 +56,7 @@ public class Fruit {
     public int getID(){
         return id;
     }
-    //Replaces object being called with the parameter object
+    //Replaces each property of the object calling this with the properties of the parameter being passed
     public void replace(Fruit x){
         name=x.name;
         id=x.id;
