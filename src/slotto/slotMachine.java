@@ -106,8 +106,6 @@ public final class slotMachine extends javax.swing.JFrame {
         hold1 = new javax.swing.JButton();
         hold2 = new javax.swing.JButton();
         hold3 = new javax.swing.JButton();
-        payTablePanel = new javax.swing.JPanel();
-        payTable = new javax.swing.JLabel();
         musicPanel = new javax.swing.JPanel();
         songsComboBox = new javax.swing.JComboBox<>();
         scanFolderButton = new javax.swing.JButton();
@@ -486,25 +484,6 @@ public final class slotMachine extends javax.swing.JFrame {
         );
 
         panelCards.add(slotsPanel, "slotsCard");
-
-        payTablePanel.setBackground(new java.awt.Color(0, 184, 214));
-        payTablePanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
-
-        payTable.setBackground(new java.awt.Color(0, 184, 214));
-        payTable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slotto/img/paytable.png"))); // NOI18N
-
-        javax.swing.GroupLayout payTablePanelLayout = new javax.swing.GroupLayout(payTablePanel);
-        payTablePanel.setLayout(payTablePanelLayout);
-        payTablePanelLayout.setHorizontalGroup(
-            payTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(payTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        payTablePanelLayout.setVerticalGroup(
-            payTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(payTable, javax.swing.GroupLayout.DEFAULT_SIZE, 974, Short.MAX_VALUE)
-        );
-
-        panelCards.add(payTablePanel, "payTableCard");
 
         musicPanel.setBackground(new java.awt.Color(0, 184, 214));
         musicPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
@@ -1266,8 +1245,8 @@ public final class slotMachine extends javax.swing.JFrame {
     }
 
     private void payTablePanelButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        //Shows pay table jPanel
-        cardLayout.show(panelCards, "payTableCard");
+        //Opens new jFrame with pay table in it
+        new payTable().setVisible(true);
     }
 
     private void musicPanelButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -1382,8 +1361,6 @@ public final class slotMachine extends javax.swing.JFrame {
     private javax.swing.JLabel outputBox;
     private javax.swing.JPanel panelCards;
     private javax.swing.JButton pauseButton;
-    private javax.swing.JLabel payTable;
-    private javax.swing.JPanel payTablePanel;
     private javax.swing.JButton payTablePanelButton;
     private javax.swing.JButton playButton;
     private javax.swing.JButton scanFolderButton;
