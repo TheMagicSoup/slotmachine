@@ -22,7 +22,6 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 public class Song {
     
     Clip clip;
-    AudioInputStream ais;
     boolean currentlyPlaying;
     public Song(){
         try{
@@ -39,7 +38,7 @@ public class Song {
             currentlyPlaying=false;
         }
         try{
-            ais=AudioSystem.getAudioInputStream(new File("src\\slotto\\sounds\\music\\"+fileName+".wav"));
+            AudioInputStream ais=AudioSystem.getAudioInputStream(new File("src\\slotto\\sounds\\music\\"+fileName+".wav"));
             clip.open(ais);
             clip.start();
             currentlyPlaying=true;
