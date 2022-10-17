@@ -11,7 +11,6 @@ import java.util.Arrays;
 import javax.sound.sampled.*;
 public class Sound {
     
-     AudioInputStream ais;
      Clip clip;
      boolean currentlyPlaying;
     
@@ -29,7 +28,7 @@ public class Sound {
             currentlyPlaying=false;
         }
         try{
-            ais=AudioSystem.getAudioInputStream(new File("src\\slotto\\sounds\\"+fileName+".wav"));
+            AudioInputStream ais=AudioSystem.getAudioInputStream(new File("src\\slotto\\sounds\\"+fileName+".wav"));
             clip.open(ais);
             clip.start();
             currentlyPlaying=true;
