@@ -1,5 +1,6 @@
 package slotto;
-import java.util.*;
+import java.util.Random;
+import java.util.ArrayList;
 public class Fruit {
     //Creating priv vars for name & id
     private String name;
@@ -57,7 +58,7 @@ public class Fruit {
         return id;
     }
     //Replaces each property of the object calling this with the properties of the parameter being passed
-    public void replace(Fruit x){
+    public void replaceWith(Fruit x){
         name=x.name;
         id=x.id;
     }
