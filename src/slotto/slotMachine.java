@@ -1001,7 +1001,7 @@ public final class slotMachine extends javax.swing.JFrame {
             outputBox.setText("You can't wager more money than what's in your balance!");
         } else if(jackpotFlag){
             //For if the player has already won a jackpot
-            outputBox.setText("YOU ALREADY WON STOP SPINNING!");
+            outputBox.setText("YOU ALREADY WON, STOP SPINNING!");
         } else {
             //Make bet equal to what's in the spinner box
             bet=x;
