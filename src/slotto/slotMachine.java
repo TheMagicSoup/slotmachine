@@ -992,25 +992,22 @@ public final class slotMachine extends javax.swing.JFrame {
         // Trace message for whenever placeBet() is executed
         System.out.println("placeBet() went through");
         // Storing inputted bet in its own variable for validation
-        int x = (Integer) betSpinner.getValue();
-        if(x<1){
-            //For if the input is less than/equal to 0
-            outputBox.setText("Your bet is too low! You have to bet at least 1.");
-        } else if(x>bank){
-            //For if the input is greater than what's in the player's balance
-            outputBox.setText("You can't wager more money than what's in your balance!");
-        } else if(jackpotFlag){
-            //For if the player has already won a jackpot
-            outputBox.setText("YOU ALREADY WON, STOP SPINNING!");
-        } else {
+        int spinnerVal = (Integer) betSpinner.getValue();
+	//For if the input is less than/equal to 0
+        if(spinnerVal<1)outputBox.setText("Your bet is too low! You have to bet at least £1.");
+	//For if the input is greater than what's in the player's balance    
+        else if(spinnerVal>bank)outputBox.setText("You can't wager more money than what's in your balance!");
+	//For if the player has already won a jackpot
+        else if(jackpotFlag)outputBox.setText("YOU ALREADY WON, STOP SPINNING!");
+        else {
             //Make bet equal to what's in the spinner box
-            bet=x;
+            bet=spinnerVal;
             //Set canSpin to true
             canSpin=true;
             //Trace statements
             System.out.println("BANK IS "+bank);
-            System.out.println("X IS "+x);
-            System.out.println("BET IS "+bet);
+            System.out.println("NEWBET IS "+NEWBET);
+            System.out.println("SPINNERVAL IS "+spinnerVal);
         }
     }
 
@@ -1071,22 +1068,18 @@ public final class slotMachine extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Procedures for bet and hold buttons"> 
     private void betButtonAct(int val) {
-        //Defining integer x
-        int x;
+        //Defining integer temp
+        int temp;
         //Storing value in spinner in spinVal
         int spinnerVal=(Integer)betSpinner.getValue();
-        if((val+spinnerVal)>bank){
-        //If parameter+what's already in the spinner exceed bank value, x=bank
-            x=bank;
-        } else if(val==0){
-        //If parameter is 0, x=0
-            x=0;
-        } else {
-        //Otherwise, x=parameter+what's in the spinner
-            x=val+spinnerVal;
-        }
-        //Set value to x
-        betSpinner.setValue(x);
+	//If parameter+what's already in the spinner exceed bank value, temp=bank
+        if((val+spinnerVal)>=bank)temp=bank;
+	//If parameter is 0, temp=0
+        else if(val==0)temp=0;
+	//Otherwise, temp=parameter+what's in the spinner
+	else temp=val+spinnerVal;
+        //Set value to temp
+        betSpinner.setValue(temp);
         //Play bet button sound effect
         soundEffects.playAudio("betbuttonpress");
     }
