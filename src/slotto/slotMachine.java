@@ -750,6 +750,8 @@ public final class slotMachine extends javax.swing.JFrame {
     }
 
     private void setWinGraphics() {
+	// Plays jackpot audio
+        soundEffects.playAudio("jackpotsong");
         // Changes GUI background to gold
         spinButton.setBackground(new java.awt.Color(163, 16, 7));
         // Sets each slot to jackpot graphic
@@ -766,8 +768,6 @@ public final class slotMachine extends javax.swing.JFrame {
         slotsPanel.setBackground(new java.awt.Color(255, 204, 102));
         // Changes background colour of panel holding buttons
         betPanel.setBackground(new java.awt.Color(255, 204, 102));
-        // Plays jackpot audio
-        soundEffects.playAudio("jackpotsong");
         // Outputs victory message
         outputBox.setText("YOU ARE A WINNER! NOW GET OUT!");
     }
@@ -1018,6 +1018,8 @@ public final class slotMachine extends javax.swing.JFrame {
             setNudgeFailGraphics();
             outputBox.setText("You can't nudge until you spin!");
         } else {
+            // Plays nudge button sound effect
+            soundEffects.playAudio("nudgebuttonpress");
             // £10 omitted from bank
             bank -= 10;
             // Trace statement to check for difference between the stored symbols and the outputted graphics
@@ -1046,8 +1048,6 @@ public final class slotMachine extends javax.swing.JFrame {
             cannotNudge = true;
             // Output bank value
             outputBalance();
-            // Plays nudge button sound effect
-            soundEffects.playAudio("nudgebuttonpress");
         }
     }
 
@@ -1068,6 +1068,8 @@ public final class slotMachine extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Procedures for bet and hold buttons"> 
     private void betButtonAct(int val) {
+        //Play bet button sound effect
+        soundEffects.playAudio("betbuttonpress");
         //Defining integer temp
         int temp;
         //Storing value in spinner in spinVal
@@ -1080,19 +1082,17 @@ public final class slotMachine extends javax.swing.JFrame {
 	else temp=val+spinnerVal;
         //Set value to temp
         betSpinner.setValue(temp);
-        //Play bet button sound effect
-        soundEffects.playAudio("betbuttonpress");
     }
 
     private void holdButtonAct(int index) {
+        //Play hold button sound effect
+        soundEffects.playAudio("holdbuttonpress");
         //Remove £10 from player balance
         bank -= 10;
         //Change balance label text to reflect this
         outputBalance();
         //Set hold flag for inputted reel as true
         holdFlags[index] = true;
-        //Play hold button sound effect
-        soundEffects.playAudio("holdbuttonpress");
     }
     // </editor-fold>
 
